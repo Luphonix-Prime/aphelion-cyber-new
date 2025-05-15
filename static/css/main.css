@@ -7,8 +7,8 @@ body {
 
 /* Custom Colors */
 :root {
-    --primary: #6366f1;
-    --primary-hover: #4f46e5;
+    --primary: #9655BD;
+    --primary-hover: #9655BD;
     --secondary: #8b5cf6;
 }
 
@@ -56,7 +56,7 @@ body {
 }
 
 .text-gradient {
-    background: linear-gradient(to right, #6366f1, #8b5cf6);
+    background: linear-gradient(to right, #a563f1, #8b5cf6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
