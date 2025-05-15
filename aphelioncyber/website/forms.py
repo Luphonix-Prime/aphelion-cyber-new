@@ -32,7 +32,7 @@ class ContactForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.add_input(Submit('submit', 'Send Message', 
-                                      css_class='w-full bg-secondary hover:bg-[#4f46e5] text-white font-medium py-3 px-4 rounded-lg transition-colors'))
+                                      css_class='w-full bg-secondary hover:bg-[#9655BD] text-white font-medium py-3 px-4 rounded-lg transition-colors'))
         self.helper.layout = Layout(
             Field('name', css_class='mb-3'),
             Field('email', css_class='mb-3'),
