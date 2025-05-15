@@ -1,7 +1,7 @@
 /* Base Styles */
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #0f172a;
+    background-color: #0f0f0f;
     color: #f8fafc;
 }
 
@@ -38,7 +38,7 @@ body {
 }
 
 .btn-secondary:hover {
-    background-color: #0f172a;
+    background-color: #0f0f0f;
     box-shadow: 0 0 20px rgba(15, 23, 42, 0.2);
 }
 
@@ -64,7 +64,7 @@ body {
 }
 
 .bg-gradient-cyber {
-    background: linear-gradient(135deg, #1e293b, #0f172a);
+    background: linear-gradient(135deg, #1e293b, #0f0f0f);
 }
 
 .bg-cyber-pattern {
@@ -84,7 +84,7 @@ body {
 
 /* Form Elements */
 .form-input {
-    background-color: #0f172a;
+    background-color: #0f0f0f;
     border: 1px solid #334155;
     border-radius: 0.5rem;
     padding: 0.75rem 1rem;
