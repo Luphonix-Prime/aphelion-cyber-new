@@ -48,3 +48,6 @@ def signup(request):
 
 def security(request):
     return render(request, 'website/security.html')
+
+def compliance(request):
+    return render(request, 'website/compliance.html')
