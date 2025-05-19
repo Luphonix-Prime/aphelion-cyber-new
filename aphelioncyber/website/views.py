@@ -23,6 +23,14 @@ def company(request):
 def login(request):
     return render(request, 'website/login.html')
 
+def forgot_password(request):
+    if request.method == 'POST':
+        # Add your password reset logic here
+        # For example, send a reset email
+        messages.success(request, 'Password reset instructions have been sent to your email.')
+        return redirect('login')
+    return render(request, 'website/forgot_password.html')
+
 def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -34,3 +42,6 @@ def contact(request):
         form = ContactForm()
     
     return render(request, 'website/contact.html', {'form': form})
+
+def signup(request):
+    return render(request, 'website/signup.html')
