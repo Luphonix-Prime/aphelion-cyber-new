@@ -99,9 +99,52 @@
                         <div class="w-3/5 h-4 bg-green-400 rounded-l-full"></div>
                         <div class="w-2/5 h-4 bg-red-400 rounded-r-full"></div>
                     </div>
-                    <div class="flex justify-between text-xs text-gray-400">
-                        <span>Pass: 56%</span>
-                        <span>Fail: 44%</span>
+                    <div class="flex justify-between items-center mb-8">
+                        <div class="flex items-center justify-between mb-8">
+                            <h1 class="text-3xl md:text-4xl font-bold">Compliance Summary</h1>
+                            <a href="#" class="inline-flex items-center bg-white text-[#9655BD] border border-[#9655BD] hover:bg-[#9655BD] hover:text-white font-semibold px-6 py-2 rounded-lg shadow transition-colors">
+                                <i class="ri-add-line mr-2"></i> More Addons
+                            </a>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span class="text-sm text-gray-400">View as User:</span>
+                            <div class="relative inline-block text-left">
+                                <button type="button" onclick="toggleUserDropdown()" class="bg-[#0f172a] border border-gray-700 rounded-lg px-4 py-2 text-sm flex items-center space-x-2">
+                                    <span id="selectedUser">All Users</span>
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </button>
+                                <div id="userDropdown" class="hidden absolute z-10 mt-2 w-56 rounded-lg bg-[#1e293b] shadow-lg ring-1 ring-black ring-opacity-5">
+                                    <div class="py-1" role="menu">
+                                        <button onclick="selectUser('all', 'All Users')" class="block w-full px-4 py-2 text-sm text-left hover:bg-[#0f172a]/50">All Users</button>
+                                        <button onclick="selectUser('pratik', 'Pratik Patel')" class="block w-full px-4 py-2 text-sm text-left hover:bg-[#0f172a]/50">
+                                            <div class="flex items-center space-x-2">
+                                                <img src="/static/images/AWS-Marketplace-Logo-PNG-to-svg-1.png" alt="AWS" class="w-5 h-5">
+                                                <span>Pratik Patel</span>
+                                            </div>
+                                        </button>
+                                        <button onclick="selectUser('saumya', 'Saumya')" class="block w-full px-4 py-2 text-sm text-left hover:bg-[#0f172a]/50">Saumya</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <script>
+                            function toggleUserDropdown() {
+                                const dropdown = document.getElementById('userDropdown');
+                                dropdown.classList.toggle('hidden');
+                            }
+                            function selectUser(value, label) {
+                                document.getElementById('selectedUser').textContent = label;
+                                document.getElementById('userDropdown').classList.add('hidden');
+                                switchUser(value);
+                            }
+                            document.addEventListener('click', function(event) {
+                                const dropdown = document.getElementById('userDropdown');
+                                const button = event.target.closest('button');
+                                if (!button || !button.hasAttribute('onclick') || !button.getAttribute('onclick').includes('toggleUserDropdown')) {
+                                    dropdown.classList.add('hidden');
+                                }
+                            });
+                            </script>
+                        </div>
                     </div>
                 </div>
             </div>
