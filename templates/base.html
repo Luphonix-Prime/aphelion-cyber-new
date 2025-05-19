@@ -191,34 +191,34 @@
                 <div class="hidden lg:flex items-center space-x-8">
                     <nav>
                         <ul class="flex space-x-8">
-                            <li class="group relative" x-data="{ open: false }" @mouseleave="open = false">
-                                <a href="{% url 'platform' %}" class="text-gray-300 hover:text-white font-medium flex items-center" @mouseenter="open = true">
+                            <li class="group relative">
+                                <button onclick="toggleDropdown('platformMenu')" class="text-gray-300 hover:text-white font-medium flex items-center">
                                     Platform
                                     <i class="ri-arrow-down-s-line ml-1 text-gray-400 group-hover:text-secondary transition-colors"></i>
-                                </a>
-                                <div class="absolute left-0 top-full mt-2 w-64" x-show="open" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform -translate-y-2" style="display: none;">
+                                </button>
+                                <div id="platformMenu" class="absolute left-0 top-full mt-2 w-64 hidden">
                                     <div class="bg-[#1e293b] rounded-xl shadow-xl p-4 border border-gray-700">
                                         <ul class="space-y-2">
-                                            <li><a href="#" class="block px-4 py-2 text-sm hover:bg-[#0f0f0f]/50 rounded-lg">Risk Assessment</a></li>
-                                            <li><a href="#" class="block px-4 py-2 text-sm hover:bg-[#0f0f0f]/50 rounded-lg">Threat Detection</a></li>
-                                            <li><a href="#" class="block px-4 py-2 text-sm hover:bg-[#0f0f0f]/50 rounded-lg">Security Automation</a></li>
-                                            <li><a href="#" class="block px-4 py-2 text-sm hover:bg-[#0f0f0f]/50 rounded-lg">Compliance Management</a></li>
+                                            <li><a href="#" class="block px-4 py-2 text-sm hover:bg-[#0f172a]/50 rounded-lg">Risk Assessment</a></li>
+                                            <li><a href="#" class="block px-4 py-2 text-sm hover:bg-[#0f172a]/50 rounded-lg">Threat Detection</a></li>
+                                            <li><a href="#" class="block px-4 py-2 text-sm hover:bg-[#0f172a]/50 rounded-lg">Security Automation</a></li>
+                                            <li><a href="#" class="block px-4 py-2 text-sm hover:bg-[#0f172a]/50 rounded-lg">Compliance Management</a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </li>
                             <li class="group relative">
-                                <a href="{% url 'solutions' %}" class="text-gray-300 hover:text-white font-medium flex items-center">
+                                <button onclick="toggleDropdown('solutionsMenu')" class="text-gray-300 hover:text-white font-medium flex items-center">
                                     Solutions
                                     <i class="ri-arrow-down-s-line ml-1 text-gray-400 group-hover:text-secondary transition-colors"></i>
-                                </a>
-                                <div class="absolute left-0 top-full mt-2 w-64 hidden group-hover:block">
+                                </button>
+                                <div id="solutionsMenu" class="absolute left-0 top-full mt-2 w-64 hidden">
                                     <div class="bg-[#1e293b] rounded-xl shadow-xl p-4 border border-gray-700">
                                         <ul class="space-y-2">
-                                            <li><a href="#" class="block px-4 py-2 text-sm hover:bg-[#0f0f0f]/50 rounded-lg">For Healthcare</a></li>
-                                            <li><a href="#" class="block px-4 py-2 text-sm hover:bg-[#0f0f0f]/50 rounded-lg">For Financial Services</a></li>
-                                            <li><a href="#" class="block px-4 py-2 text-sm hover:bg-[#0f0f0f]/50 rounded-lg">For Government</a></li>
-                                            <li><a href="#" class="block px-4 py-2 text-sm hover:bg-[#0f0f0f]/50 rounded-lg">For Enterprise</a></li>
+                                            <li><a href="#" class="block px-4 py-2 text-sm hover:bg-[#0f172a]/50 rounded-lg">For Healthcare</a></li>
+                                            <li><a href="#" class="block px-4 py-2 text-sm hover:bg-[#0f172a]/50 rounded-lg">For Financial Services</a></li>
+                                            <li><a href="#" class="block px-4 py-2 text-sm hover:bg-[#0f172a]/50 rounded-lg">For Government</a></li>
+                                            <li><a href="#" class="block px-4 py-2 text-sm hover:bg-[#0f172a]/50 rounded-lg">For Enterprise</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -453,3 +453,103 @@
         }
     }
 </style>
+
+<script>
+    // Mobile menu toggle
+    document.getElementById('mobileMenuButton').addEventListener('click', function() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.remove('hidden');
+            this.innerHTML = '<i class="ri-close-line text-2xl"></i>';
+        } else {
+            mobileMenu.classList.add('hidden');
+            this.innerHTML = '<i class="ri-menu-line text-2xl"></i>';
+        }
+    });
+    
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 10) {
+            navbar.classList.add('bg-[#0f0f0f]/90', 'backdrop-blur-md', 'border-b', 'border-[#141c2e]/30');
+        } else {
+            navbar.classList.remove('bg-[#0f0f0f]/90', 'backdrop-blur-md', 'border-b', 'border-[#141c2e]/30');
+        }
+    });
+    
+    // Particles effect
+    function createParticles() {
+        const particles = document.getElementById('particles');
+        if (!particles) return;
+        
+        // Clear any existing particles
+        particles.innerHTML = '';
+        
+        const particleCount = 50;
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Random size between 1-4px
+            const size = Math.random() * 3 + 1;
+            
+            // Style the particle
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.background = i % 2 === 0 ? 'rgba(99, 102, 241, 0.4)' : 'rgba(139, 92, 246, 0.4)';
+            particle.style.top = `${Math.random() * 100}%`;
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.animation = `pulse-glow ${(Math.random() * 2) + 2}s infinite ease-in-out`;
+            
+            particles.appendChild(particle);
+        }
+    }
+    
+    // Initialize particles if present
+    document.addEventListener('DOMContentLoaded', function() {
+        if (document.getElementById('particles')) {
+            createParticles();
+            window.addEventListener('resize', createParticles);
+        }
+    });
+    
+    // Smooth scroll function
+    function scrollToElement(elementId, offset = 100) {
+        const element = document.getElementById(elementId);
+        if (element) {
+            const yPosition = element.getBoundingClientRect().top + window.pageYOffset;
+            window.scrollTo({
+                top: yPosition - offset,
+                behavior: 'smooth'
+            });
+        }
+    }
+
+    // Dropdown menus
+    function toggleDropdown(menuId) {
+        const menu = document.getElementById(menuId);
+        const allMenus = document.querySelectorAll('[id$="Menu"]');
+        
+        // Close all other menus
+        allMenus.forEach(m => {
+            if (m.id !== menuId) {
+                m.classList.add('hidden');
+            }
+        });
+        
+        // Toggle the clicked menu
+        menu.classList.toggle('hidden');
+    }
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(event) {
+        const isDropdownButton = event.target.closest('button');
+        if (!isDropdownButton) {
+            const allMenus = document.querySelectorAll('[id$="Menu"]');
+            allMenus.forEach(menu => menu.classList.add('hidden'));
+        }
+    });
+</script>
+</body>
+</html>
