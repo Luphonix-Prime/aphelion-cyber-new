@@ -417,3 +417,37 @@
     {% block extra_js %}{% endblock %}
 </body>
 </html>
+
+<style>
+    /* Add this to your existing styles */
+    .trusted-organizations {
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+    }
+
+    .scroll-container {
+        display: flex;
+        animation: scroll 20s linear infinite;
+        width: max-content;
+    }
+
+    .scroll-container:hover {
+        animation-play-state: paused;
+    }
+
+    .org-item {
+        flex: 0 0 auto;
+        margin-right: 24px;
+        min-width: 150px;
+    }
+
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+</style>
