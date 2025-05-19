@@ -6,6 +6,62 @@
 {% block content %}
 <div class="pt-32 pb-20 bg-[#0f172a]">
     <div class="container mx-auto px-4 md:px-6">
+        <!-- Admin User Switching Menu -->
+        <div class="flex justify-between items-center mb-8">
+            <!-- <div class="flex space-x-4">
+                <button class="bg-[#9655BD] px-4 py-2 rounded-lg text-sm font-medium">Security Posture</button>
+                <button class="text-gray-400 hover:text-white px-4 py-2 rounded-lg text-sm font-medium">CIS Level1</button>
+                <button class="text-gray-400 hover:text-white px-4 py-2 rounded-lg text-sm font-medium">CIS Level2</button>
+                <button class="text-gray-400 hover:text-white px-4 py-2 rounded-lg text-sm font-medium">CIS Level3</button>
+                <button class="text-gray-400 hover:text-white px-4 py-2 rounded-lg text-sm font-medium">CIS Level4</button>
+            </div> -->
+            <div class="flex items-center space-x-4">
+                <span class="text-sm text-gray-400">View as User:</span>
+                <!-- Replace the select element with a custom dropdown -->
+                <div class="relative inline-block text-left">
+                    <button type="button" onclick="toggleUserDropdown()" class="bg-[#0f172a] border border-gray-700 rounded-lg px-4 py-2 text-sm flex items-center space-x-2">
+                        <span id="selectedUser">All Users</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="userDropdown" class="hidden absolute z-10 mt-2 w-56 rounded-lg bg-[#1e293b] shadow-lg ring-1 ring-black ring-opacity-5">
+                        <div class="py-1" role="menu">
+                            <button onclick="selectUser('all', 'All Users')" class="block w-full px-4 py-2 text-sm text-left hover:bg-[#0f172a]/50">All Users</button>
+                            <button onclick="selectUser('pratik', 'Pratik Patel')" class="block w-full px-4 py-2 text-sm text-left hover:bg-[#0f172a]/50">
+                                <div class="flex items-center space-x-2">
+                                    <img src="/static/images/AWS-Marketplace-Logo-PNG-to-svg-1.png" alt="AWS" class="w-5 h-5">
+                                    <span>Pratik Patel</span>
+                                </div>
+                            </button>
+                            <button onclick="selectUser('saumya', 'Saumya')" class="block w-full px-4 py-2 text-sm text-left hover:bg-[#0f172a]/50">Saumya</button>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Add this JavaScript to handle the custom dropdown -->
+                <script>
+                function toggleUserDropdown() {
+                    const dropdown = document.getElementById('userDropdown');
+                    dropdown.classList.toggle('hidden');
+                }
+
+                function selectUser(value, label) {
+                    document.getElementById('selectedUser').textContent = label;
+                    document.getElementById('userDropdown').classList.add('hidden');
+                    switchUser(value);
+                }
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(event) {
+                    const dropdown = document.getElementById('userDropdown');
+                    const button = event.target.closest('button');
+                    if (!button || !button.hasAttribute('onclick') || !button.getAttribute('onclick').includes('toggleUserDropdown')) {
+                        dropdown.classList.add('hidden');
+                    }
+                });
+                </script>
+            </div>
+        </div>
         <!-- Security Posture Tabs -->
         <div class="flex space-x-4 mb-8">
             <button class="bg-[#9655BD] px-4 py-2 rounded-lg text-sm font-medium">Security Posture</button>
@@ -254,3 +310,48 @@
     </div>
 </div>
 {% endblock %}
+
+
+<script>
+function switchUser() {
+    const selectedUser = document.getElementById('userSwitch').value;
+    // यहाँ AJAX कॉल करें जो सर्वर से चुने गए यूजर का डेटा लाएगा
+    // डेटा मिलने पर डैशबोर्ड अपडेट करें
+    fetch(`/api/security-data/${selectedUser}`)
+        .then(response => response.json())
+        .then(data => {
+            // डैशबोर्ड के विभिन्न सेक्शन अपडेट करें
+            updateSecurityScore(data.securityScore);
+            updateFailedChecks(data.failedChecks);
+            updateSecurityTable(data.securityChecks);
+        });
+}
+
+function updateSecurityScore(score) {
+    document.querySelector('.text-4xl.font-bold').textContent = `${score}%`;
+    // प्रोग्रेस सर्कल अपडेट करें
+    const circle = document.querySelector('circle:last-child');
+    circle.setAttribute('stroke-dashoffset', 100 - score);
+}
+
+function updateFailedChecks(checks) {
+    // सर्विस-वार फेल्ड चेक्स अपडेट करें
+    const progressBars = document.querySelectorAll('.bg-red-500, .bg-yellow-500, .bg-gray-200');
+    checks.forEach((check, index) => {
+        progressBars[index].style.width = `${check.percentage}%`;
+    });
+}
+
+function updateSecurityTable(checks) {
+    const tbody = document.querySelector('tbody');
+    tbody.innerHTML = checks.map(check => `
+        <tr class="border-b border-gray-700">
+            <td class="py-4">${check.name}</td>
+            <td><span class="text-${check.status === 'Failed' ? 'red' : 'green'}-500">●</span> ${check.status}</td>
+            <td class="text-${check.priority === 'Critical' ? 'red' : 'yellow'}-500">${check.priority}</td>
+            <td>${check.assetCount}</td>
+            <td>${check.service}</td>
+        </tr>
+    `).join('');
+}
+</script>
