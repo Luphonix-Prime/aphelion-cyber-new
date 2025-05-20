@@ -250,8 +250,34 @@
         <!-- Mobile menu -->
         <div class="lg:hidden hidden" id="mobileMenu">
             <div class="px-4 py-5 space-y-4 bg-[#141c2e] border-t border-gray-700">
-                <a href="{% url 'platform' %}" class="block py-2 text-gray-300 hover:text-white font-medium">Platform</a>
-                <a href="{% url 'solutions' %}" class="block py-2 text-gray-300 hover:text-white font-medium">Solutions</a>
+                <!-- Platform Menu -->
+                <div>
+                    <button onclick="toggleMobileSubmenu('mobilePlatformMenu')" class="flex items-center justify-between w-full py-2 text-gray-300 hover:text-white font-medium">
+                        <span>Platform</span>
+                        <i class="ri-arrow-down-s-line text-gray-400"></i>
+                    </button>
+                    <div id="mobilePlatformMenu" class="hidden pl-4 mt-2 space-y-2 border-l border-gray-700">
+                        <a href="#" class="block py-2 text-gray-400 hover:text-white">Risk Assessment</a>
+                        <a href="#" class="block py-2 text-gray-400 hover:text-white">Threat Detection</a>
+                        <a href="#" class="block py-2 text-gray-400 hover:text-white">Security Automation</a>
+                        <a href="#" class="block py-2 text-gray-400 hover:text-white">Compliance Management</a>
+                    </div>
+                </div>
+
+                <!-- Solutions Menu -->
+                <div>
+                    <button onclick="toggleMobileSubmenu('mobileSolutionsMenu')" class="flex items-center justify-between w-full py-2 text-gray-300 hover:text-white font-medium">
+                        <span>Solutions</span>
+                        <i class="ri-arrow-down-s-line text-gray-400"></i>
+                    </button>
+                    <div id="mobileSolutionsMenu" class="hidden pl-4 mt-2 space-y-2 border-l border-gray-700">
+                        <a href="{% url 'security' %}" class="block py-2 text-gray-400 hover:text-white">Security</a>
+                        <a href="{% url 'compliance' %}" class="block py-2 text-gray-400 hover:text-white">Compliance</a>
+                        <a href="#" class="block py-2 text-gray-400 hover:text-white">For Government</a>
+                        <a href="#" class="block py-2 text-gray-400 hover:text-white">For Enterprise</a>
+                    </div>
+                </div>
+
                 <a href="{% url 'pricing' %}" class="block py-2 text-gray-300 hover:text-white font-medium">Pricing</a>
                 <a href="{% url 'resources' %}" class="block py-2 text-gray-300 hover:text-white font-medium">Resources</a>
                 <a href="{% url 'company' %}" class="block py-2 text-gray-300 hover:text-white font-medium">Company</a>
@@ -431,6 +457,20 @@
         menu.classList.toggle('hidden');
     }
 
+
+    // Mobile submenu toggle
+    function toggleMobileSubmenu(menuId) {
+        const submenu = document.getElementById(menuId);
+        const arrow = event.currentTarget.querySelector('.ri-arrow-down-s-line');
+        
+        if (submenu.classList.contains('hidden')) {
+            submenu.classList.remove('hidden');
+            arrow.style.transform = 'rotate(180deg)';
+        } else {
+            submenu.classList.add('hidden');
+            arrow.style.transform = 'rotate(0deg)';
+        }
+    }
    
     </script>
 
@@ -471,6 +511,8 @@
             transform: translateX(-50%);
         }
     }
+
+    
 </style>
 
 </body>
