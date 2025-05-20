@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import ContactForm
+from .models import ResourcesPage, Whitepaper, Webinar  # Add this import line
 
 def home(request):
     return render(request, 'website/home.html')
@@ -15,7 +16,14 @@ def pricing(request):
     return render(request, 'website/pricing.html')
 
 def resources(request):
-    return render(request, 'website/resources.html')
+    resources_page = ResourcesPage.objects.first()  # This line caused the error
+    whitepapers = Whitepaper.objects.all()
+    webinars = Webinar.objects.all()
+    return render(request, 'website/resources.html', {
+        'page': resources_page,
+        'whitepapers': whitepapers,
+        'webinars': webinars,
+    })
 
 def company(request):
     return render(request, 'website/company.html')

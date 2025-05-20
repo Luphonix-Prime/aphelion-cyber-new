@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load wagtailimages_tags %}
 
 {% block title %}Resources | Aphelion Cyber Security{% endblock %}
 {% block meta_description %}Access cybersecurity resources, guides, whitepapers, and best practices to strengthen your security posture.{% endblock %}
@@ -7,9 +8,9 @@
 <div class="pt-32 pb-20">
     <div class="container mx-auto px-4 md:px-6">
         <div class="text-center max-w-3xl mx-auto mb-16">
-            <h1 class="text-4xl md:text-5xl font-bold mb-6">Resources</h1>
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">{{ page.intro_title }}</h1>
             <p class="text-xl text-gray-300">
-                Access guides, whitepapers, and best practices to strengthen your security posture.
+                {{ page.intro_subtitle }}
             </p>
         </div>
         
@@ -18,22 +19,22 @@
             <div class="absolute inset-0 bg-cyber-pattern opacity-10"></div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center p-8 md:p-12">
                 <div class="relative z-10">
-                    <span class="bg-[#9655BD]/20 text-[#9655BD] px-4 py-1 rounded-full text-sm font-medium mb-6 inline-block">Featured Whitepaper</span>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">2025 Cybersecurity Threat Landscape Report</h2>
+                    <span class="bg-[#9655BD]/20 text-[#9655BD] px-4 py-1 rounded-full text-sm font-medium mb-6 inline-block">{{ page.featured_whitepaper_tag }}</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">{{ page.featured_whitepaper_title }}</h2>
                     <p class="text-lg text-gray-300 mb-6">
-                        Our comprehensive analysis of emerging cybersecurity threats, attack vectors, and defensive strategies for the coming year.
+                        {{ page.featured_whitepaper_description }}
                     </p>
-                    <a href="#" class="inline-flex items-center bg-[#9655BD] hover:bg-[#9655BD] text-white font-medium px-6 py-3 rounded-lg transition-colors">
+                    <!-- {% if page.featured_whitepaper_file %} -->
+                    <a href="{{ page.featured_whitepaper_file.url }}" class="inline-flex items-center bg-[#9655BD] hover:bg-[#9655BD] text-white font-medium px-6 py-3 rounded-lg transition-colors">
                         Download Report
                         <i class="ri-download-line ml-2"></i>
                     </a>
+                    <!-- {% endif %} -->
                 </div>
                 <div class="relative">
-                    <img 
-                        src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400&q=80" 
-                        alt="Cybersecurity Threat Report" 
-                        class="rounded-xl shadow-2xl border border-gray-700 w-full"
-                    />
+                    {% if page.featured_whitepaper_image %}
+                    {% image page.featured_whitepaper_image fill-600x400 class="rounded-xl shadow-2xl border border-gray-700 w-full" %}
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -82,56 +83,24 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {% for whitepaper in whitepapers %}
                 <div class="bg-[#1e293b] rounded-xl overflow-hidden border border-gray-800 card-hover">
-                    <img 
-                        src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=300&q=80" 
-                        alt="Zero Trust Architecture" 
-                        class="w-full h-40 object-cover"
-                    />
+                    {% if whitepaper.image %}
+                    {% image whitepaper.image width-600 height-300 class="w-full h-40 object-cover" %}
+                    {% endif %}
                     <div class="p-6">
-                        <span class="text-xs font-medium text-gray-400">Security Architecture</span>
-                        <h3 class="text-xl font-bold mb-2 mt-1">Implementing Zero Trust Architecture</h3>
-                        <p class="text-gray-300 mb-4">A comprehensive guide to implementing zero trust security models in modern enterprises.</p>
-                        <a href="#" class="inline-flex items-center text-[#9655BD] hover:text-[#8b5cf6] font-medium">
+                        <span class="text-xs font-medium text-gray-400">{{ whitepaper.category }}</span>
+                        <h3 class="text-xl font-bold mb-2 mt-1">{{ whitepaper.title }}</h3>
+                        <p class="text-gray-300 mb-4">{{ whitepaper.description }}</p>
+                        {% if whitepaper.file %}
+                        <a href="{{ whitepaper.file.url }}" class="inline-flex items-center text-[#9655BD] hover:text-[#8b5cf6] font-medium">
                             Download PDF
                             <i class="ri-download-line ml-2"></i>
                         </a>
+                        {% endif %}
                     </div>
                 </div>
-                
-                <div class="bg-[#1e293b] rounded-xl overflow-hidden border border-gray-800 card-hover">
-                    <img 
-                        src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=300&q=80" 
-                        alt="Ransomware Defense" 
-                        class="w-full h-40 object-cover"
-                    />
-                    <div class="p-6">
-                        <span class="text-xs font-medium text-gray-400">Threat Defense</span>
-                        <h3 class="text-xl font-bold mb-2 mt-1">Advanced Ransomware Defense Strategies</h3>
-                        <p class="text-gray-300 mb-4">Learn how to protect your organization from increasingly sophisticated ransomware attacks.</p>
-                        <a href="#" class="inline-flex items-center text-[#9655BD] hover:text-[#8b5cf6] font-medium">
-                            Download PDF
-                            <i class="ri-download-line ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="bg-[#1e293b] rounded-xl overflow-hidden border border-gray-800 card-hover">
-                    <img 
-                        src="https://images.unsplash.com/photo-1593642533144-3d62aa4783ec?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=300&q=80" 
-                        alt="Cloud Security" 
-                        class="w-full h-40 object-cover"
-                    />
-                    <div class="p-6">
-                        <span class="text-xs font-medium text-gray-400">Cloud Security</span>
-                        <h3 class="text-xl font-bold mb-2 mt-1">Securing Multi-Cloud Environments</h3>
-                        <p class="text-gray-300 mb-4">Best practices for maintaining security across multiple cloud providers and hybrid environments.</p>
-                        <a href="#" class="inline-flex items-center text-[#9655BD] hover:text-[#8b5cf6] font-medium">
-                            Download PDF
-                            <i class="ri-download-line ml-2"></i>
-                        </a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
         
@@ -223,71 +192,27 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {% for webinar in webinars %}
                 <div class="bg-[#1e293b] rounded-xl overflow-hidden border border-gray-800 card-hover">
                     <div class="relative">
-                        <img 
-                            src="https://images.unsplash.com/photo-1591115765373-5207764f72e4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=300&q=80" 
-                            alt="Webinar" 
-                            class="w-full h-40 object-cover"
-                        />
+                        {% if webinar.image %}
+                        {% image webinar.image width-600 height-300 class="w-full h-40 object-cover" %}
+                        {% endif %}
                         <div class="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] to-transparent opacity-70"></div>
                         <div class="absolute bottom-3 left-3 bg-[#9655BD] text-white text-xs font-bold px-3 py-1 rounded">
-                            June 15, 2025
+                            {{ webinar.date|date:"F j, Y" }}
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">The Future of AI in Cybersecurity</h3>
-                        <p class="text-gray-300 mb-4">Join our expert panel as they discuss how artificial intelligence is transforming threat detection and response.</p>
-                        <a href="#" class="inline-flex items-center text-[#9655BD] hover:text-[#8b5cf6] font-medium">
+                        <h3 class="text-xl font-bold mb-2">{{ webinar.title }}</h3>
+                        <p class="text-gray-300 mb-4">{{ webinar.description }}</p>
+                        <a href="{{ webinar.registration_link }}" class="inline-flex items-center text-[#9655BD] hover:text-[#8b5cf6] font-medium">
                             Register Now
                             <i class="ri-arrow-right-line ml-2"></i>
                         </a>
                     </div>
                 </div>
-                
-                <div class="bg-[#1e293b] rounded-xl overflow-hidden border border-gray-800 card-hover">
-                    <div class="relative">
-                        <img 
-                            src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=300&q=80" 
-                            alt="Workshop" 
-                            class="w-full h-40 object-cover"
-                        />
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] to-transparent opacity-70"></div>
-                        <div class="absolute bottom-3 left-3 bg-[#9655BD] text-white text-xs font-bold px-3 py-1 rounded">
-                            July 8, 2025
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Threat Hunting Workshop</h3>
-                        <p class="text-gray-300 mb-4">A hands-on workshop teaching advanced techniques for proactively hunting threats in your environment.</p>
-                        <a href="#" class="inline-flex items-center text-[#9655BD] hover:text-[#8b5cf6] font-medium">
-                            Register Now
-                            <i class="ri-arrow-right-line ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="bg-[#1e293b] rounded-xl overflow-hidden border border-gray-800 card-hover">
-                    <div class="relative">
-                        <img 
-                            src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=300&q=80" 
-                            alt="Conference" 
-                            class="w-full h-40 object-cover"
-                        />
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] to-transparent opacity-70"></div>
-                        <div class="absolute bottom-3 left-3 bg-[#9655BD] text-white text-xs font-bold px-3 py-1 rounded">
-                            August 22-24, 2025
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Aphelion Cyber Summit 2025</h3>
-                        <p class="text-gray-300 mb-4">Join the industry's top security professionals for three days of insights, networking, and hands-on workshops.</p>
-                        <a href="#" class="inline-flex items-center text-[#9655BD] hover:text-[#8b5cf6] font-medium">
-                            Learn More
-                            <i class="ri-arrow-right-line ml-2"></i>
-                        </a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
         

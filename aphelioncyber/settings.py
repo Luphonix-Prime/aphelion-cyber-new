@@ -20,6 +20,24 @@ ALLOWED_HOSTS = ['*']  # For development only, restrict this in production
 # Application definition
 
 INSTALLED_APPS = [
+    'home',
+    
+    'wagtail.contrib.forms',
+    'wagtail.contrib.redirects',
+    'wagtail.embeds',
+    'wagtail.sites',  # Remove this if it exists
+    'wagtail.users',
+    'wagtail.snippets',
+    'wagtail.documents',
+    'wagtail.images',
+    'wagtail.search',
+    'wagtail.admin',
+    'wagtail.locales',
+    'wagtail',
+    
+    'modelcluster',
+    'taggit',
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -28,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     # Third party apps
+    
     'crispy_forms',
     'crispy_tailwind',
     
@@ -43,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
 ROOT_URLCONF = 'aphelioncyber.urls'
@@ -130,3 +150,33 @@ CRISPY_TEMPLATE_PACK = "tailwind"
 
 # Email settings (for development)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+# Wagtail settings
+WAGTAIL_SITE_NAME = 'Aphelion Cyber'
+WAGTAILADMIN_BASE_URL = 'http://localhost:5000'
+
+# Search
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail.search.backends.database',
+    }
+}
+
+# Number of days of entries to show in the admin interface
+WAGTAIL_RECENT_EDITS_DAYS = 7
+
+# Wagtail email notifications
+WAGTAILADMIN_NOTIFICATION_FROM_EMAIL = 'noreply@aphelioncyber.com'
+
+# Password required for accessing the Wagtail admin interface
+WAGTAILADMIN_REQUIRE_PASSWORD_CHANGE = True
+
+# Allow uploading of SVG files
+WAGTAILIMAGES_EXTENSIONS = ['gif', 'jpg', 'jpeg', 'png', 'webp', 'svg']
+
+# Maximum upload size for images (10MB)
+WAGTAILIMAGES_MAX_UPLOAD_SIZE = 10 * 1024 * 1024
+
+# Maximum upload size for documents (20MB)
+WAGTAILDOCS_MAX_UPLOAD_SIZE = 20 * 1024 * 1024
