@@ -4,29 +4,7 @@
 {% block meta_description %}Explore additional security certifications, attestations, and tools to enhance your security posture.{% endblock %}
 
 {% block content %}
-<div class="pt-32 pb-20 bg-[#0f172a]">
-    <div class="container mx-auto px-4 md:px-6">
-        <div class="mb-12">
-            <h1 class="text-3xl md:text-4xl font-bold mb-6">Addons</h1>
-            
-            <!-- Certifications / Attestations Section -->
-            <div class="mb-12">
-                <h2 class="text-2xl font-bold mb-6">Certifications / Attestations:</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- SOC2 Readiness -->
-                    <div class="bg-[#1e293b] border border-gray-800 rounded-xl p-6 flex flex-col items-center">
-                        <img src="/static/images/soc2-logo.png" alt="SOC2" class="w-16 h-16 mb-4">
-                        <h3 class="text-lg font-semibold mb-4">SOC2 Readiness</h3>
-                        <button onclick="showPopup('SOC2 Readiness')" class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
-                            Enable
-                        </button>
-                    </div>
-                    <!-- Add onclick handlers to other Enable buttons similarly -->
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <!-- Pop-up Dialog -->
 <div id="popup" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
@@ -37,7 +15,7 @@
                 <i class="ri-close-line text-2xl"></i>
             </button>
         </div>
-        <p class="text-gray-300 mb-6">Schedule a demo to enable SOC2 Readiness for all cloud accounts</p>
+        <p class="text-gray-300 mb-6" id="popupData">Schedule a demo to enable SOC2 Readiness for all cloud accounts</p>
         <p class="text-gray-300 mb-6">Click "Schedule Demo" to proceed</p>
         <div class="flex justify-end gap-4">
             <button onclick="closePopup()" class="px-6 py-2 border border-gray-600 rounded-lg hover:bg-gray-700 transition-colors">
@@ -53,6 +31,7 @@
 <script>
 function showPopup(service) {
     document.getElementById('popupTitle').textContent = `Purchase ${service}?`;
+    document.getElementById('popupData').textContent = `Schedule a demo to enable ${service}? for all cloud accounts`;
     document.getElementById('popup').classList.remove('hidden');
 }
 
@@ -80,10 +59,10 @@ function scheduleDemo() {
                 <h2 class="text-2xl font-bold mb-6">Certifications / Attestations:</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     <!-- SOC2 Readiness -->
-                    <div class="bg-[#1e293b] border border-gray-800 rounded-xl p-6 flex flex-col items-center">
+                    <div  class="bg-[#1e293b] border border-gray-800 rounded-xl p-6 flex flex-col items-center">
                         <img src="/static/images/soc2-logo.png" alt="SOC2" class="w-16 h-16 mb-4">
                         <h3 class="text-lg font-semibold mb-4">SOC2 Readiness</h3>
-                        <button class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
+                        <button onclick="showPopup('SOC2 Readiness')" class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
                             Enable
                         </button>
                     </div>
@@ -92,16 +71,16 @@ function scheduleDemo() {
                     <div class="bg-[#1e293b] border border-gray-800 rounded-xl p-6 flex flex-col items-center">
                         <img src="/static/images/iso27001-logo.png" alt="ISO27001" class="w-16 h-16 mb-4">
                         <h3 class="text-lg font-semibold mb-4">ISO27001 Readiness</h3>
-                        <button class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
+                        <button onclick="showPopup('ISO27001 Readiness')" class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
                             Enable
                         </button>
                     </div>
 
                     <!-- HIPAA Readiness -->
-                    <div class="bg-[#1e293b] border border-gray-800 rounded-xl p-6 flex flex-col items-center">
+                    <div  class="bg-[#1e293b] border border-gray-800 rounded-xl p-6 flex flex-col items-center">
                         <img src="/static/images/hipaa-logo.png" alt="HIPAA" class="w-16 h-16 mb-4">
                         <h3 class="text-lg font-semibold mb-4">HIPAA Readiness</h3>
-                        <button class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
+                        <button onclick="showPopup('HIPAA Readiness')" class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
                             Enable
                         </button>
                     </div>
@@ -110,7 +89,7 @@ function scheduleDemo() {
                     <div class="bg-[#1e293b] border border-gray-800 rounded-xl p-6 flex flex-col items-center">
                         <img src="/static/images/soc1-logo.png" alt="SOC1" class="w-16 h-16 mb-4">
                         <h3 class="text-lg font-semibold mb-4">SOC1 Readiness</h3>
-                        <button class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
+                        <button onclick="showPopup('SOC1 Readiness')" class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
                             Enable
                         </button>
                     </div>
@@ -125,7 +104,7 @@ function scheduleDemo() {
                     <div class="bg-[#1e293b] border border-gray-800 rounded-xl p-6 flex flex-col items-center">
                         <img src="/static/images/nist-logo.png" alt="NIST" class="w-16 h-16 mb-4">
                         <h3 class="text-lg font-semibold mb-4">NIST 800-171</h3>
-                        <button class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
+                        <button onclick="showPopup('NIST 800-171')" class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
                             Enable
                         </button>
                     </div>
@@ -134,7 +113,7 @@ function scheduleDemo() {
                     <div class="bg-[#1e293b] border border-gray-800 rounded-xl p-6 flex flex-col items-center">
                         <img src="/static/images/nist-logo.png" alt="NIST" class="w-16 h-16 mb-4">
                         <h3 class="text-lg font-semibold mb-4">NIST 800-53</h3>
-                        <button class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
+                        <button onclick="showPopup('NIST 800-53')" class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
                             Enable
                         </button>
                     </div>
@@ -150,7 +129,7 @@ function scheduleDemo() {
                     <div class="bg-[#1e293b] border border-gray-800 rounded-xl p-6 flex flex-col items-center">
                         <img src="/static/images/bsi-logo.png" alt="BSI" class="w-16 h-16 mb-4">
                         <h3 class="text-lg font-semibold mb-4">BSI C5 Readiness Checks</h3>
-                        <button class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
+                        <button onclick="showPopup('BSI C5 Readiness Checks')" class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
                             Enable
                         </button>
                     </div>
@@ -165,7 +144,7 @@ function scheduleDemo() {
                     <div class="bg-[#1e293b] border border-gray-800 rounded-xl p-6 flex flex-col items-center">
                         <img src="/static/images/webapp-scanner.png" alt="WebApp Scanner" class="w-16 h-16 mb-4">
                         <h3 class="text-lg font-semibold mb-4">WebApp Scanner</h3>
-                        <button class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
+                        <button onclick="showPopup('WebApp Scanner')" class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
                             Enable
                         </button>
                     </div>
@@ -174,7 +153,7 @@ function scheduleDemo() {
                     <div class="bg-[#1e293b] border border-gray-800 rounded-xl p-6 flex flex-col items-center">
                         <img src="/static/images/aws-logo.png" alt="AWS" class="w-16 h-16 mb-4">
                         <h3 class="text-lg font-semibold mb-4">AWS Well Architected</h3>
-                        <button class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
+                        <button onclick="showPopup('AWS Well Architected')" class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
                             Enable
                         </button>
                     </div>
