@@ -27,15 +27,16 @@
         /* Base */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0f172a;
+            background-color: #0f0f0f;
             color: #f8fafc;
         }
         
         /* Orbital Animation */
         .orbital-container {
             position: relative;
-            width: 500px;
-            height: 500px;
+            width: 100%;
+            max-width: 500px;
+            aspect-ratio: 1;
             margin: auto;
         }
     
@@ -44,9 +45,9 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            background: #6366f1;
+            width: clamp(40px, 16%, 80px);
+            height: clamp(40px, 16%, 80px);
+            background: #9655BD;
             border-radius: 15px;
             display: flex;
             align-items: center;
@@ -63,20 +64,19 @@
             border-radius: 50%;
         }
     
-        .orbit-1 { width: 200px; height: 200px; animation: rotate 20s linear infinite; }
-        .orbit-2 { width: 300px; height: 300px; animation: rotate 25s linear infinite reverse; }
-        .orbit-3 { width: 400px; height: 400px; animation: rotate 30s linear infinite; }
+        .orbit-1 { width: 40%; height: 40%; animation: rotate 20s linear infinite; }
+        .orbit-2 { width: 60%; height: 60%; animation: rotate 25s linear infinite reverse; }
+        .orbit-3 { width: 80%; height: 80%; animation: rotate 30s linear infinite; }
     
         .orbital-icon {
             position: absolute;
-            width: 40px;
-            height: 40px;
+            width: clamp(20px, 8%, 40px);
+            height: clamp(20px, 8%, 40px);
             background: rgba(99, 102, 241, 0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #6366f1;
         }
     
         @keyframes rotate {
@@ -103,17 +103,17 @@
         :root {
             --color-primary: #141c2e;
             --color-primary-light: #1e293b;
-            --color-secondary: #6366f1;
-            --color-secondary-dark: #4f46e5;
+            --color-secondary: #9655BD;
+            --color-secondary-dark: #9655BD;
             --color-accent: #8b5cf6;
             --color-accent-light: #a78bfa;
-            --color-dark: #0f172a;
+            --color-dark: #0f0f0f;
             --color-dark-light: #1e293b;
         }
         
         /* Gradients and effects */
         .text-gradient {
-            background-image: linear-gradient(to right, #8b5cf6, #6366f1);
+            background-image: linear-gradient(to right, #9655BD, #9655BD);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -125,7 +125,7 @@
         }
         
         .bg-gradient-cyber {
-            background: linear-gradient(125deg, #141c2e 0%, #0f172a 100%);
+            background: linear-gradient(125deg, #141c2e 0%, #0f0f0f 100%);
         }
         
         .card-hover {
@@ -174,6 +174,8 @@
     </style>
     
     {% block extra_css %}{% endblock %}
+    <!-- Alpine.js -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body>
     <!-- Header/Navbar -->
@@ -182,7 +184,7 @@
             <div class="flex items-center justify-between py-4">
                 <div class="flex items-center space-x-4">
                     <a href="{% url 'home' %}" class="flex items-center">
-                        <span class="text-2xl font-bold text-white">Aphelion<span class="text-[#6366f1]">Cyber</span></span>
+                        <span class="text-2xl font-bold text-white">Aphelion<span class="text-[#9655BD]">Cyber</span></span>
                     </a>
                 </div>
 
@@ -190,11 +192,11 @@
                     <nav>
                         <ul class="flex space-x-8">
                             <li class="group relative">
-                                <a href="{% url 'platform' %}" class="text-gray-300 hover:text-white font-medium flex items-center">
+                                <button onclick="toggleDropdown('platformMenu')" class="text-gray-300 hover:text-white font-medium flex items-center">
                                     Platform
                                     <i class="ri-arrow-down-s-line ml-1 text-gray-400 group-hover:text-secondary transition-colors"></i>
-                                </a>
-                                <div class="absolute left-0 top-full mt-2 w-64 hidden group-hover:block">
+                                </button>
+                                <div id="platformMenu" class="absolute left-0 top-full mt-2 w-64 hidden">
                                     <div class="bg-[#1e293b] rounded-xl shadow-xl p-4 border border-gray-700">
                                         <ul class="space-y-2">
                                             <li><a href="#" class="block px-4 py-2 text-sm hover:bg-[#0f172a]/50 rounded-lg">Risk Assessment</a></li>
@@ -206,11 +208,11 @@
                                 </div>
                             </li>
                             <li class="group relative">
-                                <a href="{% url 'solutions' %}" class="text-gray-300 hover:text-white font-medium flex items-center">
+                                <button onclick="toggleDropdown('solutionsMenu')" class="text-gray-300 hover:text-white font-medium flex items-center">
                                     Solutions
                                     <i class="ri-arrow-down-s-line ml-1 text-gray-400 group-hover:text-secondary transition-colors"></i>
-                                </a>
-                                <div class="absolute left-0 top-full mt-2 w-64 hidden group-hover:block">
+                                </button>
+                                <div id="solutionsMenu" class="absolute left-0 top-full mt-2 w-64 hidden">
                                     <div class="bg-[#1e293b] rounded-xl shadow-xl p-4 border border-gray-700">
                                         <ul class="space-y-2">
                                             <li><a href="#" class="block px-4 py-2 text-sm hover:bg-[#0f172a]/50 rounded-lg">For Healthcare</a></li>
@@ -230,7 +232,7 @@
 
                 <div class="hidden lg:flex items-center space-x-4">
                     <a href="{% url 'login' %}" class="text-gray-300 hover:text-white font-medium">Login</a>
-                    <a href="{% url 'contact' %}" class="bg-[#6366f1] hover:bg-[#4f46e5] text-white font-medium px-6 py-2 rounded-lg transition-colors">
+                    <a href="{% url 'contact' %}" class="bg-[#9655BD] hover:bg-[#9655BD] text-white font-medium px-6 py-2 rounded-lg transition-colors">
                         Request Demo
                     </a>
                 </div>
@@ -255,7 +257,7 @@
                 <a href="{% url 'company' %}" class="block py-2 text-gray-300 hover:text-white font-medium">Company</a>
                 <div class="pt-4 space-y-3">
                     <a href="{% url 'login' %}" class="block text-center text-gray-300 hover:text-white font-medium py-2">Login</a>
-                    <a href="{% url 'contact' %}" class="block text-center bg-[#6366f1] hover:bg-[#4f46e5] text-white font-medium px-6 py-2 rounded-lg transition-colors">
+                    <a href="{% url 'contact' %}" class="block text-center bg-[#9655BD] hover:bg-[#9655BD] text-white font-medium px-6 py-2 rounded-lg transition-colors">
                         Request Demo
                     </a>
                 </div>
@@ -269,28 +271,28 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-[#1e293b] py-12 mt-8 border-t border-gray-800">
+    <footer class="bg-[#1E1524] py-12 mt-8 border-t border-gray-800">
         <div class="container mx-auto px-4 md:px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
                 <div class="lg:col-span-2">
                     <a href="{% url 'home' %}" class="inline-block mb-6">
-                        <span class="text-2xl font-bold text-white">Aphelion<span class="text-[#6366f1]">Cyber</span></span>
+                        <span class="text-2xl font-bold text-white">Aphelion<span class="text-[#9655BD]">Cyber</span></span>
                     </a>
                     <p class="text-gray-400 mb-6 max-w-md">
                         Comprehensive cybersecurity solutions for the modern enterprise. Protecting your digital assets from evolving threats.
                     </p>
                     <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 rounded-full bg-[#0f172a] flex items-center justify-center hover:bg-[#6366f1]/20 transition-colors">
-                            <i class="ri-linkedin-fill text-xl text-gray-300 hover:text-[#6366f1]"></i>
+                        <a href="#" class="w-10 h-10 rounded-full bg-[#0f0f0f] flex items-center justify-center hover:bg-[#9655BD]/20 transition-colors">
+                            <i class="ri-linkedin-fill text-xl text-gray-300 hover:text-[#9655BD]"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-[#0f172a] flex items-center justify-center hover:bg-[#6366f1]/20 transition-colors">
-                            <i class="ri-twitter-fill text-xl text-gray-300 hover:text-[#6366f1]"></i>
+                        <a href="#" class="w-10 h-10 rounded-full bg-[#0f0f0f] flex items-center justify-center hover:bg-[#9655BD]/20 transition-colors">
+                            <i class="ri-twitter-fill text-xl text-gray-300 hover:text-[#9655BD]"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-[#0f172a] flex items-center justify-center hover:bg-[#6366f1]/20 transition-colors">
-                            <i class="ri-facebook-fill text-xl text-gray-300 hover:text-[#6366f1]"></i>
+                        <a href="#" class="w-10 h-10 rounded-full bg-[#0f0f0f] flex items-center justify-center hover:bg-[#9655BD]/20 transition-colors">
+                            <i class="ri-facebook-fill text-xl text-gray-300 hover:text-[#9655BD]"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-[#0f172a] flex items-center justify-center hover:bg-[#6366f1]/20 transition-colors">
-                            <i class="ri-github-fill text-xl text-gray-300 hover:text-[#6366f1]"></i>
+                        <a href="#" class="w-10 h-10 rounded-full bg-[#0f0f0f] flex items-center justify-center hover:bg-[#9655BD]/20 transition-colors">
+                            <i class="ri-github-fill text-xl text-gray-300 hover:text-[#9655BD]"></i>
                         </a>
                     </div>
                 </div>
@@ -340,7 +342,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    {% block extra_js %}
     <script>
         // Mobile menu toggle
         document.getElementById('mobileMenuButton').addEventListener('click', function() {
@@ -412,8 +414,64 @@
                 });
             }
         }
+
+        // Dropdown menus
+    function toggleDropdown(menuId) {
+        const menu = document.getElementById(menuId);
+        const allMenus = document.querySelectorAll('[id$="Menu"]');
+        
+        // Close all other menus
+        allMenus.forEach(m => {
+            if (m.id !== menuId) {
+                m.classList.add('hidden');
+            }
+        });
+        
+        // Toggle the clicked menu
+        menu.classList.toggle('hidden');
+    }
+
+   
     </script>
+
     
-    {% block extra_js %}{% endblock %}
+    {% endblock %}
+</body>
+</html>
+
+<style>
+    /* Add this to your existing styles */
+    .trusted-organizations {
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+    }
+
+    .scroll-container {
+        display: flex;
+        animation: scroll 20s linear infinite;
+        width: max-content;
+    }
+
+    .scroll-container:hover {
+        animation-play-state: paused;
+    }
+
+    .org-item {
+        flex: 0 0 auto;
+        margin-right: 24px;
+        min-width: 150px;
+    }
+
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+</style>
+
 </body>
 </html>
