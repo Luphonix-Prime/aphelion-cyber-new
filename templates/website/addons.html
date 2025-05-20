@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block title %}Addons | Aphelion Cyber Security{% endblock %}
+{% block meta_description %}Explore additional security certifications, attestations, and tools to enhance your security posture.{% endblock %}
+
+{% block content %}
+<div class="pt-32 pb-20 bg-[#0f172a]">
+    <div class="container mx-auto px-4 md:px-6">
+        <div class="mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold mb-6">Addons</h1>
+            
+            <!-- Certifications / Attestations Section -->
+            <div class="mb-12">
+                <h2 class="text-2xl font-bold mb-6">Certifications / Attestations:</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- SOC2 Readiness -->
+                    <div class="bg-[#1e293b] border border-gray-800 rounded-xl p-6 flex flex-col items-center">
+                        <img src="/static/images/soc2-logo.png" alt="SOC2" class="w-16 h-16 mb-4">
+                        <h3 class="text-lg font-semibold mb-4">SOC2 Readiness</h3>
+                        <button class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
+                            Enable
+                        </button>
+                    </div>
+
+                    <!-- ISO27001 Readiness -->
+                    <div class="bg-[#1e293b] border border-gray-800 rounded-xl p-6 flex flex-col items-center">
+                        <img src="/static/images/iso27001-logo.png" alt="ISO27001" class="w-16 h-16 mb-4">
+                        <h3 class="text-lg font-semibold mb-4">ISO27001 Readiness</h3>
+                        <button class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
+                            Enable
+                        </button>
+                    </div>
+
+                    <!-- HIPAA Readiness -->
+                    <div class="bg-[#1e293b] border border-gray-800 rounded-xl p-6 flex flex-col items-center">
+                        <img src="/static/images/hipaa-logo.png" alt="HIPAA" class="w-16 h-16 mb-4">
+                        <h3 class="text-lg font-semibold mb-4">HIPAA Readiness</h3>
+                        <button class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
+                            Enable
+                        </button>
+                    </div>
+
+                    <!-- SOC1 Readiness -->
+                    <div class="bg-[#1e293b] border border-gray-800 rounded-xl p-6 flex flex-col items-center">
+                        <img src="/static/images/soc1-logo.png" alt="SOC1" class="w-16 h-16 mb-4">
+                        <h3 class="text-lg font-semibold mb-4">SOC1 Readiness</h3>
+                        <button class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
+                            Enable
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Certifications Section -->
+            <div class="mb-12">
+                <h2 class="text-2xl font-bold mb-6">Additional Certifications:</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- NIST 800-171 -->
+                    <div class="bg-[#1e293b] border border-gray-800 rounded-xl p-6 flex flex-col items-center">
+                        <img src="/static/images/nist-logo.png" alt="NIST" class="w-16 h-16 mb-4">
+                        <h3 class="text-lg font-semibold mb-4">NIST 800-171</h3>
+                        <button class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
+                            Enable
+                        </button>
+                    </div>
+
+                    <!-- NIST 800-53 -->
+                    <div class="bg-[#1e293b] border border-gray-800 rounded-xl p-6 flex flex-col items-center">
+                        <img src="/static/images/nist-logo.png" alt="NIST" class="w-16 h-16 mb-4">
+                        <h3 class="text-lg font-semibold mb-4">NIST 800-53</h3>
+                        <button class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
+                            Enable
+                        </button>
+                    </div>
+
+                    <!-- CIS Levels -->
+                    <div class="bg-[#1e293b] border border-gray-800 rounded-xl p-6 flex flex-col items-center">
+                        <img src="/static/images/cis-logo.png" alt="CIS" class="w-16 h-16 mb-4">
+                        <h3 class="text-lg font-semibold mb-4">CIS Level 1 and 2</h3>
+                        <span class="bg-green-500 text-white px-4 py-2 rounded-lg">Active</span>
+                    </div>
+
+                    <!-- BSI C5 -->
+                    <div class="bg-[#1e293b] border border-gray-800 rounded-xl p-6 flex flex-col items-center">
+                        <img src="/static/images/bsi-logo.png" alt="BSI" class="w-16 h-16 mb-4">
+                        <h3 class="text-lg font-semibold mb-4">BSI C5 Readiness Checks</h3>
+                        <button class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
+                            Enable
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Tools Section -->
+            <div>
+                <h2 class="text-2xl font-bold mb-6">Security Tools & Additional Services:</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- WebApp Scanner -->
+                    <div class="bg-[#1e293b] border border-gray-800 rounded-xl p-6 flex flex-col items-center">
+                        <img src="/static/images/webapp-scanner.png" alt="WebApp Scanner" class="w-16 h-16 mb-4">
+                        <h3 class="text-lg font-semibold mb-4">WebApp Scanner</h3>
+                        <button class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
+                            Enable
+                        </button>
+                    </div>
+
+                    <!-- AWS Well Architected -->
+                    <div class="bg-[#1e293b] border border-gray-800 rounded-xl p-6 flex flex-col items-center">
+                        <img src="/static/images/aws-logo.png" alt="AWS" class="w-16 h-16 mb-4">
+                        <h3 class="text-lg font-semibold mb-4">AWS Well Architected</h3>
+                        <button class="bg-[#9655BD] hover:bg-[#8b5cf6] text-white px-6 py-2 rounded-lg transition-colors">
+                            Enable
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
