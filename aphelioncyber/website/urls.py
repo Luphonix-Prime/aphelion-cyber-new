@@ -14,4 +14,5 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),  # Add this line
     path('security/', views.security, name='security'),
     path('compliance/', views.compliance, name='compliance'),
+    path('addons/', views.addons, name='addons'),
 ]

@@ -51,3 +51,6 @@ def security(request):
 
 def compliance(request):
     return render(request, 'website/compliance.html')
+
+def addons(request):
+    return render(request, 'website/addons.html')
