@@ -112,5 +112,14 @@ body {
     }
 }
 
+/* Compliance Template Custom Styles */
+.compliance-card {
+    transition: box-shadow 0.2s;
+}
+.compliance-card:hover {
+    box-shadow: 0 8px 32px 0 rgba(150,85,189,0.25);
+    border-color: #9655BD;
+}
+
 
 

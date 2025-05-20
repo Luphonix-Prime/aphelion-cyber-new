@@ -45,3 +45,9 @@ def contact(request):
 
 def signup(request):
     return render(request, 'website/signup.html')
+
+def security(request):
+    return render(request, 'website/security.html')
+
+def compliance(request):
+    return render(request, 'website/compliance.html')

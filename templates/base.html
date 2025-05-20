@@ -34,8 +34,9 @@
         /* Orbital Animation */
         .orbital-container {
             position: relative;
-            width: 500px;
-            height: 500px;
+            width: 100%;
+            max-width: 500px;
+            aspect-ratio: 1;
             margin: auto;
         }
     
@@ -44,8 +45,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
+            width: clamp(40px, 16%, 80px);
+            height: clamp(40px, 16%, 80px);
             background: #9655BD;
             border-radius: 15px;
             display: flex;
@@ -63,20 +64,19 @@
             border-radius: 50%;
         }
     
-        .orbit-1 { width: 200px; height: 200px; animation: rotate 20s linear infinite; }
-        .orbit-2 { width: 300px; height: 300px; animation: rotate 25s linear infinite reverse; }
-        .orbit-3 { width: 400px; height: 400px; animation: rotate 30s linear infinite; }
+        .orbit-1 { width: 40%; height: 40%; animation: rotate 20s linear infinite; }
+        .orbit-2 { width: 60%; height: 60%; animation: rotate 25s linear infinite reverse; }
+        .orbit-3 { width: 80%; height: 80%; animation: rotate 30s linear infinite; }
     
         .orbital-icon {
             position: absolute;
-            width: 40px;
-            height: 40px;
+            width: clamp(20px, 8%, 40px);
+            height: clamp(20px, 8%, 40px);
             background: rgba(99, 102, 241, 0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #9655BD;
         }
     
         @keyframes rotate {
@@ -342,7 +342,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    {% block extra_js %}
     <script>
         // Mobile menu toggle
         document.getElementById('mobileMenuButton').addEventListener('click', function() {
@@ -360,9 +360,9 @@
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 10) {
-                navbar.classList.add('bg-[#0f0f0f]/90', 'backdrop-blur-md', 'border-b', 'border-[#141c2e]/30');
+                navbar.classList.add('bg-[#0f172a]/90', 'backdrop-blur-md', 'border-b', 'border-[#141c2e]/30');
             } else {
-                navbar.classList.remove('bg-[#0f0f0f]/90', 'backdrop-blur-md', 'border-b', 'border-[#141c2e]/30');
+                navbar.classList.remove('bg-[#0f172a]/90', 'backdrop-blur-md', 'border-b', 'border-[#141c2e]/30');
             }
         });
         
@@ -414,9 +414,28 @@
                 });
             }
         }
+
+        // Dropdown menus
+    function toggleDropdown(menuId) {
+        const menu = document.getElementById(menuId);
+        const allMenus = document.querySelectorAll('[id$="Menu"]');
+        
+        // Close all other menus
+        allMenus.forEach(m => {
+            if (m.id !== menuId) {
+                m.classList.add('hidden');
+            }
+        });
+        
+        // Toggle the clicked menu
+        menu.classList.toggle('hidden');
+    }
+
+   
     </script>
+
     
-    {% block extra_js %}{% endblock %}
+    {% endblock %}
 </body>
 </html>
 
@@ -454,102 +473,5 @@
     }
 </style>
 
-<script>
-    // Mobile menu toggle
-    document.getElementById('mobileMenuButton').addEventListener('click', function() {
-        const mobileMenu = document.getElementById('mobileMenu');
-        if (mobileMenu.classList.contains('hidden')) {
-            mobileMenu.classList.remove('hidden');
-            this.innerHTML = '<i class="ri-close-line text-2xl"></i>';
-        } else {
-            mobileMenu.classList.add('hidden');
-            this.innerHTML = '<i class="ri-menu-line text-2xl"></i>';
-        }
-    });
-    
-    // Navbar scroll effect
-    window.addEventListener('scroll', function() {
-        const navbar = document.getElementById('navbar');
-        if (window.scrollY > 10) {
-            navbar.classList.add('bg-[#0f0f0f]/90', 'backdrop-blur-md', 'border-b', 'border-[#141c2e]/30');
-        } else {
-            navbar.classList.remove('bg-[#0f0f0f]/90', 'backdrop-blur-md', 'border-b', 'border-[#141c2e]/30');
-        }
-    });
-    
-    // Particles effect
-    function createParticles() {
-        const particles = document.getElementById('particles');
-        if (!particles) return;
-        
-        // Clear any existing particles
-        particles.innerHTML = '';
-        
-        const particleCount = 50;
-        
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            
-            // Random size between 1-4px
-            const size = Math.random() * 3 + 1;
-            
-            // Style the particle
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            particle.style.background = i % 2 === 0 ? 'rgba(99, 102, 241, 0.4)' : 'rgba(139, 92, 246, 0.4)';
-            particle.style.top = `${Math.random() * 100}%`;
-            particle.style.left = `${Math.random() * 100}%`;
-            particle.style.animation = `pulse-glow ${(Math.random() * 2) + 2}s infinite ease-in-out`;
-            
-            particles.appendChild(particle);
-        }
-    }
-    
-    // Initialize particles if present
-    document.addEventListener('DOMContentLoaded', function() {
-        if (document.getElementById('particles')) {
-            createParticles();
-            window.addEventListener('resize', createParticles);
-        }
-    });
-    
-    // Smooth scroll function
-    function scrollToElement(elementId, offset = 100) {
-        const element = document.getElementById(elementId);
-        if (element) {
-            const yPosition = element.getBoundingClientRect().top + window.pageYOffset;
-            window.scrollTo({
-                top: yPosition - offset,
-                behavior: 'smooth'
-            });
-        }
-    }
-
-    // Dropdown menus
-    function toggleDropdown(menuId) {
-        const menu = document.getElementById(menuId);
-        const allMenus = document.querySelectorAll('[id$="Menu"]');
-        
-        // Close all other menus
-        allMenus.forEach(m => {
-            if (m.id !== menuId) {
-                m.classList.add('hidden');
-            }
-        });
-        
-        // Toggle the clicked menu
-        menu.classList.toggle('hidden');
-    }
-
-    // Close dropdowns when clicking outside
-    document.addEventListener('click', function(event) {
-        const isDropdownButton = event.target.closest('button');
-        if (!isDropdownButton) {
-            const allMenus = document.querySelectorAll('[id$="Menu"]');
-            allMenus.forEach(menu => menu.classList.add('hidden'));
-        }
-    });
-</script>
 </body>
 </html>
