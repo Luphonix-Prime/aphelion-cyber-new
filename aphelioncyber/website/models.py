@@ -1,8 +1,49 @@
 from django.db import models
 from wagtail.models import Page
-from wagtail.fields import RichTextField, StreamField
+from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel
-from wagtail.images.blocks import ImageChooserBlock
+
+class WhitePaper(Page):
+    cover_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    description = RichTextField()
+    publication_date = models.DateField()
+    pdf_file = models.FileField(upload_to='whitepapers/')
+
+    content_panels = Page.content_panels + [
+        FieldPanel('cover_image'),
+        FieldPanel('description'),
+        FieldPanel('publication_date'),
+        FieldPanel('pdf_file'),
+    ]
+
+class Webinar(Page):
+    cover_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    description = RichTextField()
+    webinar_date = models.DateTimeField()
+    registration_link = models.URLField()
+    is_upcoming = models.BooleanField(default=True)
+    recording_url = models.URLField(blank=True, null=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('cover_image'),
+        FieldPanel('description'),
+        FieldPanel('webinar_date'),
+        FieldPanel('registration_link'),
+        FieldPanel('is_upcoming'),
+        FieldPanel('recording_url'),
+    ]
 
 class ResourcesPage(Page):
     intro_title = models.CharField(max_length=200, default="Resources")
@@ -35,46 +76,6 @@ class ResourcesPage(Page):
         FieldPanel('featured_whitepaper_description'),
         FieldPanel('featured_whitepaper_image'),
         FieldPanel('featured_whitepaper_file'),
-    ]
-
-class Whitepaper(models.Model):
-    title = models.CharField(max_length=200)
-    description = models.TextField()
-    category = models.CharField(max_length=100)
-    image = StreamField([
-        ('image', ImageChooserBlock(required=True)),
-    ], use_json_field=True, blank=True)
-    file = models.ForeignKey(
-        'wagtaildocs.Document',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-    
-    panels = [
-        FieldPanel('title'),
-        FieldPanel('description'),
-        FieldPanel('category'),
-        FieldPanel('image'),
-        FieldPanel('file'),
-    ]
-
-class Webinar(models.Model):
-    title = models.CharField(max_length=200)
-    description = models.TextField()
-    date = models.DateField()
-    image = StreamField([
-        ('image', ImageChooserBlock(required=True)),
-    ], use_json_field=True, blank=True)
-    registration_link = models.URLField()
-    
-    panels = [
-        FieldPanel('title'),
-        FieldPanel('description'),
-        FieldPanel('date'),
-        FieldPanel('image'),
-        FieldPanel('registration_link'),
     ]
 
 class ContactSubmission(models.Model):

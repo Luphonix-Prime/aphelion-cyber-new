@@ -25,7 +25,7 @@ INSTALLED_APPS = [
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
     'wagtail.embeds',
-    'wagtail.sites',  # Remove this if it exists
+    'wagtail.sites',
     'wagtail.users',
     'wagtail.snippets',
     'wagtail.documents',
@@ -46,12 +46,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     # Third party apps
-    
     'crispy_forms',
     'crispy_tailwind',
     
     # Local apps
-    'aphelioncyber.website',
+    'aphelioncyber.website'
 ]
 
 MIDDLEWARE = [
@@ -64,6 +63,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
+
+WAGTAIL_SITE_NAME = 'Aphelion Cyber'
 
 ROOT_URLCONF = 'aphelioncyber.urls'
 
