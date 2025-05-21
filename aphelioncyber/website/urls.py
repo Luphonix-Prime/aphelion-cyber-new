@@ -1,6 +1,10 @@
 from django.urls import path
 from . import views
 
+# Add this import at the top
+from django.contrib.auth.views import LoginView
+
+# Update the urlpatterns list
 urlpatterns = [
     path('', views.home, name='home'),
     path('platform/', views.platform, name='platform'),
@@ -8,10 +12,13 @@ urlpatterns = [
     path('pricing/', views.pricing, name='pricing'),
     path('resources/', views.resources, name='resources'),
     path('company/', views.company, name='company'),
-    path('login/', views.login, name='login'),
+    # Update the login path to include 'accounts' prefix
+    path('accounts/login/', LoginView.as_view(template_name='website/login.html'), name='login'),
     path('contact/', views.contact, name='contact'),
     path('forgot-password/', views.forgot_password, name='forgot_password'),
     path('signup/', views.signup, name='signup'),  # Add this line
     path('security/', views.security, name='security'),
     path('compliance/', views.compliance, name='compliance'),
+    path('addons/', views.addons, name='addons'),
+    path('user-management/', views.user_management, name='user_management'),
 ]

@@ -62,63 +62,172 @@
                 </script>
             </div>
         </div>
-        <!-- Security Posture Tabs -->
-        <div class="flex space-x-4 mb-8">
-            <button class="bg-[#9655BD] px-4 py-2 rounded-lg text-sm font-medium">Security Posture</button>
-            <button class="text-gray-400 hover:text-white px-4 py-2 rounded-lg text-sm font-medium">CIS Level1</button>
-            <button class="text-gray-400 hover:text-white px-4 py-2 rounded-lg text-sm font-medium">CIS Level2</button>
-            <button class="text-gray-400 hover:text-white px-4 py-2 rounded-lg text-sm font-medium">CIS Level3</button>
-            <button class="text-gray-400 hover:text-white px-4 py-2 rounded-lg text-sm font-medium">CIS Level4</button>
+        <!-- Security Posture Tabs with JavaScript -->
+        <div class="flex flex-wrap gap-2 mb-8 overflow-x-auto pb-2">
+            <button onclick="showSection('security-posture')" class="tab-button bg-[#9655BD] px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap min-w-fit">Security Posture</button>
+            <button onclick="showSection('cis-level1')" class="tab-button text-gray-400 hover:text-white px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap min-w-fit">CIS Level1</button>
+            <button onclick="showSection('cis-level2')" class="tab-button text-gray-400 hover:text-white px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap min-w-fit">CIS Level2</button>
         </div>
 
-        <!-- Security Overview -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-            <!-- Security Score -->
-            <div class="bg-[#1e293b] p-6 rounded-xl">
-                <h3 class="text-lg font-medium mb-4">Security Score</h3>
-                <div class="relative w-48 h-48 mx-auto">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <span class="text-4xl font-bold">91%</span>
+        <!-- Security Posture Section -->
+        <div id="security-posture" class="section-content">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+                <!-- Existing Security Score and Metrics -->
+                <div class="bg-[#1e293b] p-6 rounded-xl">
+                    <h3 class="text-lg font-medium mb-4">Security Score</h3>
+                    <div class="relative w-48 h-48 mx-auto">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-4xl font-bold">91%</span>
+                        </div>
+                        <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                            <circle cx="18" cy="18" r="16" fill="none" stroke="#1e293b" stroke-width="2"></circle>
+                            <circle cx="18" cy="18" r="16" fill="none" stroke="#9655BD" stroke-width="2" stroke-dasharray="100" stroke-dashoffset="9"></circle>
+                        </svg>
                     </div>
-                    <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
-                        <circle cx="18" cy="18" r="16" fill="none" stroke="#1e293b" stroke-width="2"></circle>
-                        <circle cx="18" cy="18" r="16" fill="none" stroke="#9655BD" stroke-width="2" stroke-dasharray="100" stroke-dashoffset="9"></circle>
-                    </svg>
                 </div>
-            </div>
 
-            <!-- Security Metrics -->
-            <div class="lg:col-span-2 bg-[#1e293b] p-6 rounded-xl">
-                <h3 class="text-lg font-medium mb-4">Failed Checks by Service</h3>
-                <div class="space-y-4">
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm">CloudTrail</span>
-                        <div class="w-2/3 bg-[#0f172a] rounded-full h-2">
-                            <div class="bg-red-500 h-2 rounded-full" style="width: 75%"></div>
+                <!-- Security Metrics -->
+                <div class="lg:col-span-2 bg-[#1e293b] p-6 rounded-xl">
+                    <h3 class="text-lg font-medium mb-4">Failed Checks by Service</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm">CloudTrail</span>
+                            <div class="w-2/3 bg-[#0f172a] rounded-full h-2">
+                                <div class="bg-red-500 h-2 rounded-full" style="width: 75%"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm">S3Bucket</span>
-                        <div class="w-2/3 bg-[#0f172a] rounded-full h-2">
-                            <div class="bg-red-500 h-2 rounded-full" style="width: 60%"></div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm">S3Bucket</span>
+                            <div class="w-2/3 bg-[#0f172a] rounded-full h-2">
+                                <div class="bg-red-500 h-2 rounded-full" style="width: 60%"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm">IAM</span>
-                        <div class="w-2/3 bg-[#0f172a] rounded-full h-2">
-                            <div class="bg-gray-200 h-2 rounded-full" style="width: 90%"></div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm">IAM</span>
+                            <div class="w-2/3 bg-[#0f172a] rounded-full h-2">
+                                <div class="bg-gray-200 h-2 rounded-full" style="width: 90%"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm">SecurityHub</span>
-                        <div class="w-2/3 bg-[#0f172a] rounded-full h-2">
-                            <div class="bg-yellow-500 h-2 rounded-full" style="width: 45%"></div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm">SecurityHub</span>
+                            <div class="w-2/3 bg-[#0f172a] rounded-full h-2">
+                                <div class="bg-yellow-500 h-2 rounded-full" style="width: 45%"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- CIS Level 1 Section -->
+        <div id="cis-level1" class="section-content hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+                <!-- CIS Level 1 Score -->
+                <div class="bg-[#1e293b] p-6 rounded-xl">
+                    <h3 class="text-lg font-medium mb-4">CIS Level 1 Score</h3>
+                    <div class="relative w-48 h-48 mx-auto">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-4xl font-bold">75%</span>
+                        </div>
+                        <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                            <circle cx="18" cy="18" r="16" fill="none" stroke="#1e293b" stroke-width="2"></circle>
+                            <circle cx="18" cy="18" r="16" fill="none" stroke="#9655BD" stroke-width="2" stroke-dasharray="100" stroke-dashoffset="25"></circle>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- CIS Level 1 Metrics -->
+                <div class="lg:col-span-2 bg-[#1e293b] p-6 rounded-xl">
+                    <h3 class="text-lg font-medium mb-4">CIS Level 1 Compliance by Control</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm">Account and Access Management</span>
+                            <div class="w-2/3 bg-[#0f172a] rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm">Network Security</span>
+                            <div class="w-2/3 bg-[#0f172a] rounded-full h-2">
+                                <div class="bg-yellow-500 h-2 rounded-full" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm">Logging and Monitoring</span>
+                            <div class="w-2/3 bg-[#0f172a] rounded-full h-2">
+                                <div class="bg-red-500 h-2 rounded-full" style="width: 45%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CIS Level 2 Section -->
+        <div id="cis-level2" class="section-content hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+                <!-- CIS Level 2 Score -->
+                <div class="bg-[#1e293b] p-6 rounded-xl">
+                    <h3 class="text-lg font-medium mb-4">CIS Level 2 Score</h3>
+                    <div class="relative w-48 h-48 mx-auto">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-4xl font-bold">82%</span>
+                        </div>
+                        <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                            <circle cx="18" cy="18" r="16" fill="none" stroke="#1e293b" stroke-width="2"></circle>
+                            <circle cx="18" cy="18" r="16" fill="none" stroke="#9655BD" stroke-width="2" stroke-dasharray="100" stroke-dashoffset="18"></circle>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- CIS Level 2 Metrics -->
+                <div class="lg:col-span-2 bg-[#1e293b] p-6 rounded-xl">
+                    <h3 class="text-lg font-medium mb-4">CIS Level 2 Compliance by Control</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm">Configuration Management</span>
+                            <div class="w-2/3 bg-[#0f172a] rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm">Vulnerability Management</span>
+                            <div class="w-2/3 bg-[#0f172a] rounded-full h-2">
+                                <div class="bg-yellow-500 h-2 rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm">Incident Response</span>
+                            <div class="w-2/3 bg-[#0f172a] rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 88%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section-content').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.remove('hidden');
+            
+            // Update button styles
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('bg-[#9655BD]');
+                button.classList.add('text-gray-400');
+            });
+            
+            // Highlight active button
+            event.target.classList.remove('text-gray-400');
+            event.target.classList.add('bg-[#9655BD]');
+        }
+        </script>
         <!-- Security Checks Table -->
         <div class="bg-[#1e293b] rounded-xl p-6">
             <div class="flex justify-between items-center mb-6">

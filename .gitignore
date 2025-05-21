@@ -1,3 +1,9 @@
+__pycache__
+aphelioncyber\__pycache__\
+aphelioncyber/__pycache__/
+aphelioncyber/website/__pycache__/
+aphelioncyber\website\__pycache__\
+
 node_modules
 dist
 .DS_Store
@@ -9,6 +15,5 @@ db.sqlite3
 *.sqlite3
 /db.sqlite3
 /*.sqlite3
-__pycache__
-aphelioncyber/__pycache__/
-aphelioncyber/website/__pycache__/
+aphelioncyber/website/__pycache__/urls.cpython-312.pyc
+aphelioncyber/website/__pycache__/views.cpython-312.pyc
