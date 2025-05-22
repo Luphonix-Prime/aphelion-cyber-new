@@ -25,6 +25,15 @@
                     <form id="myForm" class="space-y-4">
                         <div class="space-y-4">
                             <div>
+                                <label for="scan-type" class="block text-sm font-medium text-[#B23AFC] mb-2">Select Scanner Type</label>
+                                <select id="scan-type" name="scan-type" 
+                                    class="w-full bg-[#0f172a]/50 border border-[#B23AFC]/30 rounded-lg px-4 py-2 text-gray-100 focus:outline-none focus:ring-2 focus:ring-[#B23AFC]/50">
+                                    <option value="wasp2">O wasp Zap</option>
+                                    <option value="nikto">NIKTO</option>
+                                    <option value="sans">SANS</option>
+                                </select>
+                            </div>
+                            <div>
                                 <label for="website-url" class="block text-sm font-medium text-[#B23AFC] mb-2">Website URL</label>
                                 <input type="text" name="website-url" id="website-url" 
                                     class="w-full bg-[#0f172a]/50 border border-[#B23AFC]/30 rounded-lg px-4 py-2 text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#B23AFC]/50"
