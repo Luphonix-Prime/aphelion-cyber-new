@@ -68,6 +68,8 @@ def compliance(request):
 def addons(request):
     return render(request, 'website/addons.html')
 
+def webappscanner(request):
+    return render(request, 'website/webappscanner.html')
 
 # @login_required
 def user_management(request):

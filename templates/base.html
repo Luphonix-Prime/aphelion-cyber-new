@@ -1,9 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Aphelion Cyber Security{% endblock %}</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'images/new logo.png' %}">
+    <link rel="apple-touch-icon" href="{% static 'images/new logo.png' %}">
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="{% block meta_description %}Advanced Cybersecurity for the Digital Enterprise. Protect your organization with our comprehensive security platform.{% endblock %}">
@@ -184,6 +189,7 @@
             <div class="flex items-center justify-between py-4">
                 <div class="flex items-center space-x-4">
                     <a href="{% url 'home' %}" class="flex items-center">
+                        <img src="{% static 'images/new logo.png' %}" alt="Aphelion Cyber" class="h-10 w-auto mr-3">
                         <span class="text-2xl font-bold text-white">Aphelion<span class="text-[#9655BD]">Cyber</span></span>
                     </a>
                 </div>
@@ -192,19 +198,16 @@
                     <nav>
                         <ul class="flex space-x-8">
                             <li class="group relative">
-                                <button onclick="toggleDropdown('platformMenu')" class="text-gray-300 hover:text-white font-medium flex items-center">
-                                    Platform
-                                    <i class="ri-arrow-down-s-line ml-1 text-gray-400 group-hover:text-secondary transition-colors"></i>
-                                </button>
+                                <a href="{% url 'webappscanner' %}" class="text-gray-300 hover:text-white font-medium flex items-center">Hacked?</a></li>
                                 <div id="platformMenu" class="absolute left-0 top-full mt-2 w-64 hidden">
-                                    <div class="bg-[#1e293b] rounded-xl shadow-xl p-4 border border-gray-700">
+                                    <!-- <div class="bg-[#1e293b] rounded-xl shadow-xl p-4 border border-gray-700">
                                         <ul class="space-y-2">
                                             <li><a href="#" class="block px-4 py-2 text-sm hover:bg-[#0f172a]/50 rounded-lg">Risk Assessment</a></li>
                                             <li><a href="#" class="block px-4 py-2 text-sm hover:bg-[#0f172a]/50 rounded-lg">Threat Detection</a></li>
                                             <li><a href="#" class="block px-4 py-2 text-sm hover:bg-[#0f172a]/50 rounded-lg">Security Automation</a></li>
                                             <li><a href="#" class="block px-4 py-2 text-sm hover:bg-[#0f172a]/50 rounded-lg">Compliance Management</a></li>
                                         </ul>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </li>
                             <li class="group relative">
