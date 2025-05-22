@@ -110,3 +110,6 @@ def user_management(request):
             
     users = User.objects.select_related('usersubscription').all()
     return render(request, 'website/user_management.html', {'users': users})
+
+def policygenerator(request):
+    return render(request, 'website/policygenerator.html')
