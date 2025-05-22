@@ -21,4 +21,5 @@ urlpatterns = [
     path('compliance/', views.compliance, name='compliance'),
     path('addons/', views.addons, name='addons'),
     path('user-management/', views.user_management, name='user_management'),
+    path('webappscanner/', views.webappscanner, name='webappscanner'),
 ]

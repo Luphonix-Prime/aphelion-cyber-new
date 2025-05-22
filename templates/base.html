@@ -192,19 +192,16 @@
                     <nav>
                         <ul class="flex space-x-8">
                             <li class="group relative">
-                                <button onclick="toggleDropdown('platformMenu')" class="text-gray-300 hover:text-white font-medium flex items-center">
-                                    Platform
-                                    <i class="ri-arrow-down-s-line ml-1 text-gray-400 group-hover:text-secondary transition-colors"></i>
-                                </button>
+                                <a href="{% url 'webappscanner' %}" class="text-gray-300 hover:text-white font-medium flex items-center">Web app scanner</a></li>
                                 <div id="platformMenu" class="absolute left-0 top-full mt-2 w-64 hidden">
-                                    <div class="bg-[#1e293b] rounded-xl shadow-xl p-4 border border-gray-700">
+                                    <!-- <div class="bg-[#1e293b] rounded-xl shadow-xl p-4 border border-gray-700">
                                         <ul class="space-y-2">
                                             <li><a href="#" class="block px-4 py-2 text-sm hover:bg-[#0f172a]/50 rounded-lg">Risk Assessment</a></li>
                                             <li><a href="#" class="block px-4 py-2 text-sm hover:bg-[#0f172a]/50 rounded-lg">Threat Detection</a></li>
                                             <li><a href="#" class="block px-4 py-2 text-sm hover:bg-[#0f172a]/50 rounded-lg">Security Automation</a></li>
                                             <li><a href="#" class="block px-4 py-2 text-sm hover:bg-[#0f172a]/50 rounded-lg">Compliance Management</a></li>
                                         </ul>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </li>
                             <li class="group relative">
