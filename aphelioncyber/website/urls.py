@@ -22,4 +22,5 @@ urlpatterns = [
     path('addons/', views.addons, name='addons'),
     path('user-management/', views.user_management, name='user_management'),
     path('webappscanner/', views.webappscanner, name='webappscanner'),
+    path('policy-generator/', views.policygenerator, name='policygenerator'),  # Add this line
 ]
