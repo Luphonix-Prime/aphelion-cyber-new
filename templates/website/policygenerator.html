@@ -4,114 +4,110 @@
 {% block title %}Policy Generator | Aphelion Cyber Security{% endblock %}
 
 {% block content %}
+<br>
+<br>
+<br>
+<br>
 <div class="min-h-screen bg-[#0f172a] text-gray-100 py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Security Posture Tabs -->
-        <div class="flex space-x-4 mb-8">
-            <button class="px-4 py-2 bg-[#9655BD] rounded-lg text-sm font-medium">Security Posture</button>
-            <button class="px-4 py-2 text-gray-400 hover:text-white rounded-lg text-sm font-medium">CIS Level1</button>
-            <button class="px-4 py-2 text-gray-400 hover:text-white rounded-lg text-sm font-medium">CIS Level2</button>
-            <button class="px-4 py-2 text-gray-400 hover:text-white rounded-lg text-sm font-medium">CIS Level3</button>
-        </div>
-
         <!-- Cloud Connection Status -->
-        <div class="bg-[#1e293b] rounded-lg p-6 mb-8">
+        <div class="mb-8">
             <h2 class="text-xl font-semibold mb-4">Cloud Connection Status</h2>
             <div class="flex items-center space-x-2">
-                <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                <span class="text-sm">Connected Successfully on July, 22 2023 at 09:54:55 IST</span>
+                <span class="text-green-500">Connected Successfully</span>
+                <span class="text-gray-400">on May 20,2025 at 03:35AM IST</span>
             </div>
         </div>
 
         <!-- Asset Inventory Section -->
-        <div class="bg-[#1e293b] rounded-lg p-6">
-            <div class="flex justify-between items-center mb-8">
-                <div>
-                    <h2 class="text-xl font-semibold">Asset Inventory</h2>
-                    <p class="text-sm text-gray-400 mt-1">Total Configured 11 Assets yet</p>
+        <div class="mb-8">
+            <h2 class="text-xl font-semibold mb-4">Asset Inventory</h2>
+            <div class="text-gray-400 mb-6">Scan Completed 11 Hours ago</div>
+            
+            <!-- Asset Count and Graph -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <!-- Asset Count -->
+                <div class="bg-[#1e293b] rounded-lg p-6">
+                    <div class="flex items-baseline mb-4">
+                        <span class="text-4xl font-bold text-[#9655BD]">47</span>
+                        <span class="ml-2 text-gray-400">Unique Assets</span>
+                    </div>
+                    <div class="flex items-baseline">
+                        <span class="text-4xl font-bold text-[#3B82F6]">0</span>
+                        <span class="ml-2 text-gray-400">Attack Surfaces</span>
+                    </div>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <div class="text-3xl font-bold text-[#9655BD]">47</div>
-                    <div class="text-3xl font-bold text-gray-500">0</div>
-                </div>
-            </div>
 
-            <!-- Assets by Service Graph -->
-            <div class="mb-8">
-                <h3 class="text-lg font-medium mb-4">Assets by Service</h3>
-                <div class="grid grid-cols-6 gap-4">
-                    <div class="text-center">
-                        <div class="h-24 bg-[#1e293b] rounded-lg relative">
-                            <div class="absolute bottom-0 w-full h-3/4 bg-red-500 rounded-b-lg"></div>
+                <!-- Assets by Service Graph -->
+                <div class="bg-[#1e293b] rounded-lg p-6">
+                    <h3 class="text-lg font-medium mb-4">Assets by Services</h3>
+                    <div class="flex flex-wrap gap-4">
+                        {% for i in '1234567' %}
+                        <div class="flex items-center space-x-2">
+                            <i class="ri-mail-line text-red-500"></i>
+                            <span class="text-lg font-semibold">18</span>
                         </div>
-                        <div class="mt-2 text-sm">10</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="h-24 bg-[#1e293b] rounded-lg relative">
-                            <div class="absolute bottom-0 w-full h-1/2 bg-blue-500 rounded-b-lg"></div>
-                        </div>
-                        <div class="mt-2 text-sm">10</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="h-24 bg-[#1e293b] rounded-lg relative">
-                            <div class="absolute bottom-0 w-full h-2/3 bg-green-500 rounded-b-lg"></div>
-                        </div>
-                        <div class="mt-2 text-sm">10</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="h-24 bg-[#1e293b] rounded-lg relative">
-                            <div class="absolute bottom-0 w-full h-1/2 bg-yellow-500 rounded-b-lg"></div>
-                        </div>
-                        <div class="mt-2 text-sm">10</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="h-24 bg-[#1e293b] rounded-lg relative">
-                            <div class="absolute bottom-0 w-full h-2/5 bg-purple-500 rounded-b-lg"></div>
-                        </div>
-                        <div class="mt-2 text-sm">10</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="h-24 bg-[#1e293b] rounded-lg relative">
-                            <div class="absolute bottom-0 w-full h-3/5 bg-pink-500 rounded-b-lg"></div>
-                        </div>
-                        <div class="mt-2 text-sm">10</div>
+                        {% endfor %}
+                        <a href="#" class="text-blue-500 hover:text-blue-400">More Details</a>
                     </div>
                 </div>
             </div>
 
             <!-- Asset Inventory List -->
-            <div>
-                <h3 class="text-lg font-medium mb-4">Asset Inventory List</h3>
+            <div class="bg-[#1e293b] rounded-lg overflow-hidden">
+                <div class="p-4 border-b border-gray-700 flex justify-between items-center">
+                    <h3 class="text-lg font-medium">Asset Inventory List</h3>
+                    <div class="flex space-x-3">
+                        <a href="{% url 'export_pdf' %}" class="flex items-center space-x-2 px-3 py-1.5 bg-red-500/10 text-red-500 rounded-lg hover:bg-red-500/20 transition-colors">
+                            <img src="{% static 'images/pdf-icon.png' %}" alt="PDF" class="w-5 h-5">
+                            <span class="text-sm font-medium">Export PDF</span>
+                        </a>
+                        <a href="{% url 'export_excel' %}" class="flex items-center space-x-2 px-3 py-1.5 bg-green-500/10 text-green-500 rounded-lg hover:bg-green-500/20 transition-colors">
+                            <img src="{% static 'images/excel-icon.png' %}" alt="Excel" class="w-5 h-5">
+                            <span class="text-sm font-medium">Export Excel</span>
+                        </a>
+                    </div>
+                </div>
                 <div class="overflow-x-auto">
                     <table class="w-full">
-                        <thead>
-                            <tr class="border-b border-gray-700">
-                                <th class="py-3 text-left">Asset Name</th>
-                                <th class="py-3 text-left">Description</th>
-                                <th class="py-3 text-right">Status</th>
+                        <thead class="bg-[#0f172a]">
+                            <tr>
+                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-400">Asset Name</th>
+                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-400">Description</th>
+                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-400">Status</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {% for i in "123456789012345"|make_list %}
-                            <tr class="border-b border-gray-700/50 hover:bg-[#1e293b]/50">
-                                <td class="py-3">AMZN-345-Linux-App</td>
-                                <td class="py-3 text-gray-400">Server host that handles all program requests</td>
-                                <td class="py-3 text-right">
-                                    <span class="px-2 py-1 rounded-full bg-green-500/20 text-green-500 text-sm">Active</span>
+                        <tbody class="divide-y divide-gray-700">
+                            {% for i in '12345678901234567890'|make_list %}
+                            <tr class="hover:bg-[#0f172a]/50">
+                                <td class="px-4 py-3 text-sm">AMZN-EC2-Linux-App</td>
+                                <td class="px-4 py-3 text-sm text-gray-400">Server that is installed in project</td>
+                                <td class="px-4 py-3 text-sm">
+                                    <span class="px-2 py-1 text-xs font-medium bg-green-500/20 text-green-500 rounded-full">Running</span>
                                 </td>
                             </tr>
                             {% endfor %}
                         </tbody>
                     </table>
                 </div>
-
                 <!-- Pagination -->
-                <div class="flex justify-center space-x-2 mt-6">
-                    {% for i in "12345"|make_list %}
-                    <button class="w-8 h-8 rounded-full {% if forloop.first %}bg-[#9655BD]{% else %}bg-[#1e293b]{% endif %} flex items-center justify-center">
-                        {{ i }}
-                    </button>
-                    {% endfor %}
+                <div class="flex items-center justify-between px-4 py-3 border-t border-gray-700">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-sm text-gray-400">Showing</span>
+                        <select class="bg-[#0f172a] border border-gray-700 rounded px-2 py-1 text-sm">
+                            <option>10</option>
+                            <option>20</option>
+                            <option>50</option>
+                        </select>
+                        <span class="text-sm text-gray-400">entries</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button class="px-3 py-1 text-sm bg-[#0f172a] border border-gray-700 rounded hover:bg-[#1e293b]">Previous</button>
+                        <button class="px-3 py-1 text-sm bg-[#9655BD] rounded hover:bg-[#8b5cf6]">1</button>
+                        <button class="px-3 py-1 text-sm bg-[#0f172a] border border-gray-700 rounded hover:bg-[#1e293b]">2</button>
+                        <button class="px-3 py-1 text-sm bg-[#0f172a] border border-gray-700 rounded hover:bg-[#1e293b]">3</button>
+                        <button class="px-3 py-1 text-sm bg-[#0f172a] border border-gray-700 rounded hover:bg-[#1e293b]">Next</button>
+                    </div>
                 </div>
             </div>
         </div>

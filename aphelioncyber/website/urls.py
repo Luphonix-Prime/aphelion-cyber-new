@@ -22,5 +22,7 @@ urlpatterns = [
     path('addons/', views.addons, name='addons'),
     path('user-management/', views.user_management, name='user_management'),
     path('webappscanner/', views.webappscanner, name='webappscanner'),
-    path('policy-generator/', views.policygenerator, name='policygenerator'),  # Add this line
+    path('policy-generator/', views.policygenerator, name='policygenerator'),
+    path('export-pdf/', views.export_pdf, name='export_pdf'),
+    path('export-excel/', views.export_excel, name='export_excel'),
 ]
