@@ -5,6 +5,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from .models import UserSubscription
+from django.http import HttpResponse
+import csv
+from reportlab.pdfgen import canvas
+from io import BytesIO
 
 def home(request):
     return render(request, 'website/home.html')
@@ -113,3 +117,62 @@ def user_management(request):
 
 def policygenerator(request):
     return render(request, 'website/policygenerator.html')
+
+
+def export_pdf(request):
+    # Create a file-like buffer to receive PDF data
+    buffer = BytesIO()
+    
+    # Create the PDF object, using the buffer as its "file"
+    p = canvas.Canvas(buffer)
+    
+    # Draw things on the PDF
+    p.drawString(100, 800, "Asset Inventory Report")
+    y = 750
+    # Add headers
+    p.drawString(100, y, "Asset Name")
+    p.drawString(250, y, "Description")
+    p.drawString(400, y, "Status")
+    y -= 20
+    
+    # Add sample data (replace with your actual data)
+    sample_data = [
+        ["AMZN-EC2-Linux-App", "Server that is installed in project", "Running"],
+        # Add more rows as needed
+    ]
+    
+    for row in sample_data:
+        p.drawString(100, y, row[0])
+        p.drawString(250, y, row[1])
+        p.drawString(400, y, row[2])
+        y -= 20
+    
+    # Close the PDF object cleanly
+    p.showPage()
+    p.save()
+    
+    # Get the value of the BytesIO buffer and return it
+    pdf = buffer.getvalue()
+    buffer.close()
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="asset_inventory.pdf"'
+    response.write(pdf)
+    return response
+
+def export_excel(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="asset_inventory.csv"'
+    
+    writer = csv.writer(response)
+    writer.writerow(['Asset Name', 'Description', 'Status'])
+    
+    # Add sample data (replace with your actual data)
+    sample_data = [
+        ['AMZN-EC2-Linux-App', 'Server that is installed in project', 'Running'],
+        # Add more rows as needed
+    ]
+    
+    for row in sample_data:
+        writer.writerow(row)
+    
+    return response
